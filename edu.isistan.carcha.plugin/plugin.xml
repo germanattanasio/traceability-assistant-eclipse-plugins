@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Carcha"
+            id="edu.isistan.carcha.category">
+      </category>
+      <wizard
+            category="edu.isistan.carcha.category"
+            class="edu.isistan.carcha.wizards.CarchaWizard"
+            finalPerspective="edu.isistan.carcha.perspective"
+            icon="icons/trace.png"
+            id="edu.isistan.carcha.wizards.CarchaWizard"
+            name="Traceability File">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="edu.isistan.carcha.category"
+            class="edu.isistan.carcha.project.ProjectNewWizard"
+            finalPerspective="edu.isistan.carcha.perspective"
+            icon="icons/traceproject.gif"
+            id="edu.isistan.carcha.project.ProjectNewWizard"
+            name="Traceability Project">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="edu.isistan.carcha.category"
+            name="Carcha">
+      </category>
+      <wizard
+            category="edu.isistan.carcha.category"
+            class="edu.isistan.carcha.wizards.DesignDecisionDocumentWizard"
+            finalPerspective="edu.isistan.carcha.perspective"
+            icon="icons/ddd.gif"
+            id="edu.isistan.carcha.wizards.DesignDecisionDocumentWizard"
+            name="Design Decision Document">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+			class="edu.isistan.carcha.perspective.TracePerspective"  icon="icons/traceper.png"
+			id="edu.isistan.carcha.perspective" name="Carcha Editor">
+	  </perspective>
+		
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="edu.isistan.carcha.perspective">
+         <newWizardShortcut
+               id="edu.isistan.carcha.wizards.DesignDecisionDocumentWizard">
+         </newWizardShortcut>
+         <newWizardShortcut
+               id="edu.isistan.carcha.wizards.CarchaWizard">
+         </newWizardShortcut>
+         <newWizardShortcut
+               id="edu.isistan.carcha.project.ProjectNewWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/traceper.png"
+            id=" edu.isistan.carcha.nature.ProjectNatureImage"
+            natureId="edu.isistan.carcha.nature.ProjectNature">
+      </image>
+   </extension>
+   <extension
+         id="edu.isistan.carcha.nature.ProjectNature"
+         name="Carcha Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="edu.isistan.carcha.nature.ProjectNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="edu.isistan.carcha.plugin.editors.DXMIEditor"
+            contributorClass="edu.isistan.carcha.plugin.editors.DXMIEditorContributor"
+            extensions="ddd,dxmi"
+            icon="icons/ruta.png"
+            id="edu.isistan.carcha.plugin.editors.DXMIEditor"
+            name="DXMI Editor">
+      </editor>
+      <editor
+            class="edu.isistan.carcha.plugin.editors.TraceabilityEditor"
+            contributorClass="edu.isistan.carcha.plugin.editors.TraceabilityEditorContributor"
+            extensions="tra"
+            icon="icons/viewtrace.png"
+            id="edu.isistan.carcha.plugin.editors.TraceabilityEditor"
+            name="Traceability Editor">
+      </editor>
+   </extension>
+</plugin>

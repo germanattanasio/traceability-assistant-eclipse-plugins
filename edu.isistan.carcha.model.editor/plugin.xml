@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated carcha -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="isistan.edu.carcha.model.carcha.presentation.CarchaModelWizardID"
+            name="%_UI_CarchaModelWizard_label"
+            class="isistan.edu.carcha.model.carcha.presentation.CarchaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/CarchaModelFile.gif">
+         <description>%_UI_CarchaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated carcha -->
+      <editor
+            id="isistan.edu.carcha.model.carcha.presentation.CarchaEditorID"
+            name="%_UI_CarchaEditor_label"
+            icon="icons/full/obj16/CarchaModelFile.gif"
+            extensions="carcha"
+            class="isistan.edu.carcha.model.carcha.presentation.CarchaEditor"
+            contributorClass="isistan.edu.carcha.model.carcha.presentation.CarchaActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
