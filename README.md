@@ -17,7 +17,7 @@ To install the TRAS plugin:
 3.  Click **New Remote Site**.
 4.  Enter the following:
     *   **Name:** TRAS update site
-    *   **URL:** https://traceability-assistant.mybluemix.net/eclipseand click **OK**.
+    *   **URL:** https://traceability-assistant.mybluemix.net/eclipse and click **OK**.
 5.  "TRAS update site" should appear under **Sites to include in search**.   
     Click the checkbox next to it to select it, and click **Finish**.
 6.  You should see **TRAS Feature** under **Select features to install**.   
