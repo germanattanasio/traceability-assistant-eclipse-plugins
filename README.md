@@ -8,11 +8,23 @@ This project depends on [traceability-assistant](https://github.com/germanattana
 
 ## Installation instructions
 
-1. Open eclipse kelper or newer
-2. Help -> Install new software
-3. Add Site -> `url to our plugin`
-4. Select TRAS
-5. Next, Accept, Next...
+This plugin has primarily been tested with Eclipse 4.3 and 4.4\. The plugin is not compatible with versions of Eclipse preceding 4.3\. The plugin runs under Java 1.6/6.0, or newer.
+
+To install the TRAS plugin:
+
+1.  In Eclipse, click on **Help** -> **Software Update** -> Find and Install...
+2.  Choose the **Search for new features to install** option, and click **Next**.
+3.  Click **New Remote Site**.
+4.  Enter the following:
+    *   **Name:** TRAS update site
+    *   **URL:** https://traceability-assistant.mybluemix.net/eclipseand click **OK**.
+5.  "TRAS update site" should appear under **Sites to include in search**.   
+    Click the checkbox next to it to select it, and click **Finish**.
+6.  You should see **TRAS Feature** under **Select features to install**.   
+    Select the checkbox next to it and click next.
+7.  Select the **I accept** option to accept the license and click **Next**.
+8.  The plugin is not digitally signed. Go ahead and install it anyway.
+9.  Click **Yes** to make Eclipse restart itself.
 
 ## Using TRAS
 
@@ -23,37 +35,7 @@ You need to run the `tycho-version-plugin` to update the version in all your pro
 1. Create a maven run configuration in the parent project
 2. Set `tycho-versions:set-version`
 3. Add `newVersion` as parameter and `x.x.x` as version. 
-4. Run the maven goal.
-
-## How do I get set up?
-
-### Assumptions
-
- * You have eclipse installed. See https://eclipse.org/downloads/
- * You have maven installed. See https://maven.apache.org/
- * You have UIMA RUTA installed. Update site: http://www.apache.org/dist/uima/eclipse-update-site
-### Steps
-
-1. Download the code:
-
-        git clone git@github.com:germanattanasio/traceability-assistant-eclipse.git
-
-1. Install the [SVD](https://github.com/lucasmaystre/svdlibc) library. 
-2. Open a terminal and type `svd`. 
-3. If you get `command not found`, export the library folder to your PATH.
-
-        export PATH=$PATH:/path/to/svdlibc/directory
-
-    e.g: `/Users/foo/svdlibc` that way the runtime can find the svd command.
-
-    If you are using eclipse you need to look at the environment. You may need to add the path variable in  your run configuration and include the path to `svd`as showed above.
-    You can also follow the instructions in this [blog](http://architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.UtSw2vbVVyo)
-
-4. Open eclipse, import the project as Maven projects and refresh the workspace.
-
-5. Copy the traceability-assistant jar file to `edu.isistan.carcha.unified` and add it as a dependency. Make sure that the jar name is the same as in the `edu.isistan.carcha.unified/META-INF/MANIFEST.MF` file.
-
-6. Create a Run Configuration and run your workspace as an eclipse plugin.
+4. Click Run.
 
 
 ## What is REAssistant?
@@ -74,14 +56,17 @@ In order to install REAssistant you will have to contact alejandro.rago[at]gmail
 
 ## Troubleshooting
 
-The plugins are using maven + [Tycho](https://wiki.eclipse.org/Tycho/Dependency_Resolution_Troubleshooting)
+1. Open a terminal and type `svd`. 
+2. If you get `command not found`, export the library folder to your PATH.
 
-1. Unable to satisfy dependency during maven build
-```
-java.lang.RuntimeException: No solution found because the problem is unsatisfiable.: [Unable to satisfy dependency from edu.isistan.carcha.plugin 1.0.0.qualifier...
-```
+        export PATH=$PATH:/path/to/svdlibc/directory
 
-Make sure that you have all the bundle. Check each `plugin.xml` file and match the bundle you have installed with the one needed.
+    e.g: `/Users/foo/svdlibc` that way the runtime can find the svd command.
+
+    If you are using eclipse you need to look at the environment. You may need to add the path variable in  your run configuration and include the path to `svd`as showed above.
+    You can also follow the instructions in this [blog](http://architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.UtSw2vbVVyo)
+
+
 
 ## License
 
