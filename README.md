@@ -2,9 +2,9 @@
 
 TRAS(Traceability Assistant) is a semi-automated tool that help analysts uncover traceability links between requirements documents described as use cases and architectural documents.
 
-This project presents TRAS in a set of eclipse plugins. We use [Tycho](http://www.eclipse.org/tycho) to build and release the plugins.
+This project presents TRAS in a set of eclipse plugins. It uses [Tycho](http://www.eclipse.org/tycho) to build and release the plugins.
 
-This project depends on [traceability-assistant](https://github.com/germanattanasio/traceability-assistant)
+More information: http://traceability-assistant.mybluemix.net/
 
 ## Installation instructions
 
@@ -20,7 +20,7 @@ To install the TRAS plugin:
     *   **URL:** https://traceability-assistant.mybluemix.net/eclipse and click **OK**.
 5.  "TRAS update site" should appear under **Sites to include in search**.   
     Click the checkbox next to it to select it, and click **Finish**.
-6.  You should see **TRAS Feature** under **Select features to install**.   
+6.  You should see **TRAS** under **Select features to install**.   
     Select the checkbox next to it and click next.
 7.  Select the **I accept** option to accept the license and click **Next**.
 8.  The plugin is not digitally signed. Go ahead and install it anyway.
