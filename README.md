@@ -31,12 +31,17 @@ To install the TRAS plugin:
 Steps to use the plugin here....
 
 ## Release process
-You need to run the `tycho-version-plugin` to update the version in all your projects.
+
 1. Create a maven run configuration in the parent project
-2. Set `tycho-versions:set-version`
+2. Set `tycho-versions:set-version` as goal
 3. Add `newVersion` as parameter and `x.x.x` as version. 
 4. Click Run.
-
+5. Create another maven run configuration in the parent project
+6. Set `clean instal` as goal
+7. Click Run.
+8. The update-site will be available at:  
+   `edu.isistan.carcha.p2updatesite/target/edu.isistan.carcha.p2updatesite-x.x.x.zip`  
+   The zip file contrains all the information you need to install the plugin in your eclipse.
 
 ## What is REAssistant?
 
