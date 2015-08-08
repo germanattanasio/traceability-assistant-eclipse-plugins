@@ -26,6 +26,18 @@ To install the TRAS plugin:
 8.  The plugin is not digitally signed. Go ahead and install it anyway.
 9.  Click **Yes** to make Eclipse restart itself.
 
+### svdlib
+In order to use the traceability discovery feature you need to install a library called [SVD](https://github.com/lucasmaystre/svdlibc).  
+Once the library is installed, open a terminal and type `svd`. 
+If you get `command not found`, export the library folder to your PATH.
+
+    export PATH=$PATH:/path/to/svdlibc/directory  
+
+e.g: `/Users/foo/svdlibc` that way the runtime can find the svd command.
+
+In eclipse you may need to add the path variable in  your run configuration and include the path to `svd`as showed above. Follow the instructions in this [blog](http://architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.UtSw2vbVVyo)
+
+
 ## Using TRAS
 
 Steps to use the plugin here....
