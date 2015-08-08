@@ -270,7 +270,7 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	 */
 	void generateDDsViewData(){
 		List<String[]> dds = new ArrayList<String[]>();
-		List<Entity> designDecisions = Utils.annotationAsList(getPath(), DesignDecision.class, true);
+		List<Entity> designDecisions = Utils.annotationAsList(getPath(), DesignDecision.class, false);
 		
 		for (Entity designDecision : designDecisions){
 			dds.add(new String[]{ designDecision.getClassification(), designDecision.getLabel() });
@@ -283,7 +283,7 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	 */
 	void generatePieData(){
 		try {
-			List<Entity> concerns = Utils.annotationAsList(getPath(), DesignDecision.class, true);
+			List<Entity> concerns = Utils.annotationAsList(getPath(), DesignDecision.class, false);
 			HashMap<String,Integer> values = new HashMap<String, Integer>();
 			Integer temp = 0;
 

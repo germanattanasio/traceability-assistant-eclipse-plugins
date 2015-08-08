@@ -45,16 +45,14 @@ import edu.isistan.carcha.lsa.model.Entity.NodeType;
 public class PluginUtil {
 
 	/**
-	 * Extracts crosscutting concerns from a REA file.
+	 * Extracts Crosscutting Concerns from a REA file.
 	 *
 	 * @param iFile the i file
-	 * @return the crosscutting concern list
+	 * @return the Crosscutting Concern list
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static List<Entity> concernsFromListFileAsList(IFile iFile) throws IOException {
 		List<Entity> ret = new ArrayList<Entity>();
-		return Utils.annotationAsList(iFile.getRawLocation().toOSString(), edu.isistan.carcha.concern.cdetector.DesignDecision.class, true);
-
 		List<String> documents = FileUtils.readLines(iFile.getRawLocation().makeAbsolute().toFile(),"utf-8");
 		for (String cStr : documents) {
 			String [] concernStr = cStr.split("\\t",2);
