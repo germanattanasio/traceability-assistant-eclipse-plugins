@@ -53,6 +53,8 @@ public class PluginUtil {
 	 */
 	public static List<Entity> concernsFromListFileAsList(IFile iFile) throws IOException {
 		List<Entity> ret = new ArrayList<Entity>();
+		return Utils.annotationAsList(iFile.getRawLocation().toOSString(), edu.isistan.carcha.concern.cdetector.DesignDecision.class, true);
+
 		List<String> documents = FileUtils.readLines(iFile.getRawLocation().makeAbsolute().toFile(),"utf-8");
 		for (String cStr : documents) {
 			String [] concernStr = cStr.split("\\t",2);

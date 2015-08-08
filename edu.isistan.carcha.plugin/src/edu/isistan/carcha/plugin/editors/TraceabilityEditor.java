@@ -202,8 +202,8 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 		
 		
 		Label ddsLabel = new Label(composite, SWT.BORDER);
-		ddsLabel.setText("Architectural design desitions");
-		ddsLabel.setToolTipText("This are the design desitions detected on the architectural document");
+		ddsLabel.setText("Architectural design decisions");
+		ddsLabel.setToolTipText("This are the design decisions detected on the architectural document");
 		
 		gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		ddsLabel.setLayoutData(gridData);
@@ -250,7 +250,7 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 
 		ddDataset = new DefaultPieDataset();
 		impactDataset = new DefaultPieDataset();
-		JFreeChart ddChart = ChartFactory.createPieChart("Design desitions",
+		JFreeChart ddChart = ChartFactory.createPieChart("Design decisions",
 				ddDataset, true, true, false);
 		JFreeChart impactChart = ChartFactory.createPieChart("Impact",
 				impactDataset, true, true, false);
@@ -309,8 +309,8 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 		composite.setLayout(new GridLayout());
 		
 		Label concernLabel = new Label(composite, SWT.BORDER);
-		concernLabel.setText("Requirements Concerns");
-		concernLabel.setToolTipText("This are the concern detected on the requierement document");
+		concernLabel.setText("Requirements Crosscuttings Concerns");
+		concernLabel.setToolTipText("This are the Crosscuttings Concerns detected on the requierement document");
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		concernLabel.setLayoutData(gridData);
 		
@@ -363,8 +363,8 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 		button.setLayoutData(gridData);
 
 		Label ddsLabel = new Label(composite, SWT.BORDER);
-		ddsLabel.setText("Architectural design desitions");
-		ddsLabel.setToolTipText("This are the design desitions detected on the architectural document");
+		ddsLabel.setText("Architectural design decisions");
+		ddsLabel.setToolTipText("This are the design decisions detected on the architectural document");
 		gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		ddsLabel.setLayoutData(gridData);
 		bottomNewLink = new TableViewer(composite, SWT.MULTI | SWT.H_SCROLL

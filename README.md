@@ -77,7 +77,6 @@ In order to install REAssistant you will have to contact alejandro.rago[at]gmail
     You can also follow the instructions in this [blog](http://architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.UtSw2vbVVyo)
 
 
-
 ## License
 
 This sample code is licensed under Apache 2.0. Full license text is available in LICENSE.

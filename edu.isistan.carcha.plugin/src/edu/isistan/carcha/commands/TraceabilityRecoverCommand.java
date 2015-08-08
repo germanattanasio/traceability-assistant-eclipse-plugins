@@ -106,9 +106,9 @@ public class TraceabilityRecoverCommand  extends WorkspaceModifyOperation {
 	protected void execute(IProgressMonitor progressMonitor) throws CoreException,InvocationTargetException, InterruptedException {
 		progressMonitor.beginTask("Recovering Traceability links",100);
 		try {
-			logger.info("Reading the requirements Concerns from REA file: "+ reaFile.getName());
+			logger.info("Reading the requirements Crosscuttings Concerns from REA file: "+ reaFile.getName());
 			List<Entity> reaConcerns = PluginUtil.concernsFromListFileAsList(reaFile);
-			logger.info("Reading the design decision from DXMI file: "+ dxmiFile.getName());
+			logger.info("Reading the Design Decisions from DXMI file: "+ dxmiFile.getName());
 			List<Entity> designDecisions = PluginUtil.designDecisionsAsList(dxmiFile);
 			
 			logger.info("Running the traceability Recovering Tool with dim: "+dimension+" thresold: "+threshold);

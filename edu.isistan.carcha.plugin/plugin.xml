@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            name="Carcha"
+            name="TRAS"
             id="edu.isistan.carcha.category">
       </category>
       <wizard
@@ -32,7 +32,7 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="edu.isistan.carcha.category"
-            name="Carcha">
+            name="TRAS">
       </category>
       <wizard
             category="edu.isistan.carcha.category"
@@ -40,14 +40,14 @@
             finalPerspective="edu.isistan.carcha.perspective"
             icon="icons/ddd.gif"
             id="edu.isistan.carcha.wizards.DesignDecisionDocumentWizard"
-            name="Design Decision Document">
+            name="Design Decision document">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
 			class="edu.isistan.carcha.perspective.TracePerspective"  icon="icons/traceper.png"
-			id="edu.isistan.carcha.perspective" name="Carcha Editor">
+			id="edu.isistan.carcha.perspective" name="Traceability Editor">
 	  </perspective>
 		
    </extension>

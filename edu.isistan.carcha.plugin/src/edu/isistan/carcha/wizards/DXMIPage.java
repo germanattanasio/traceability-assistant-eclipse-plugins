@@ -77,7 +77,7 @@ public class DXMIPage extends WizardPage {
 		
 		btnCreate = new Button(compositeBtn, SWT.RADIO);
 		btnCreate.setSize(544, 16);
-		btnCreate.setText("Create a new DXMI file");
+		btnCreate.setText("Recover Design Decisions(DXMI file) from an architectural document.");
 		btnCreate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -87,7 +87,7 @@ public class DXMIPage extends WizardPage {
 		
 		btnSelect = new Button(compositeBtn, SWT.RADIO);
 		btnSelect.setSize(544, 16);
-		btnSelect.setText("Select an existent DXMI file");
+		btnSelect.setText("Select an existent DXMI file.");
 		btnSelect.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {

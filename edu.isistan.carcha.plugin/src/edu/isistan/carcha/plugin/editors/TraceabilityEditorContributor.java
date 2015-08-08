@@ -113,7 +113,7 @@ public class TraceabilityEditorContributor extends MultiPageEditorActionBarContr
 	private void createActions() {
 		sampleAction = new Action() {
 			public void run() {
-				MessageDialog.openInformation(null, "Carcha", "Sample Action Executed");
+				MessageDialog.openInformation(null, "TRAS", "Sample Action Executed");
 			}
 		};
 		sampleAction.setText("Sample Action");

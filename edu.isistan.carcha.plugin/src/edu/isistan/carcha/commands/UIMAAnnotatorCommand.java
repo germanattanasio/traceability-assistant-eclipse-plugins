@@ -62,7 +62,7 @@ public class UIMAAnnotatorCommand extends WorkspaceModifyOperation {
 	 */
 	@Override
 	protected void execute(IProgressMonitor progressMonitor) throws CoreException,InvocationTargetException, InterruptedException {
-			progressMonitor.beginTask("Annotating Design Decision in the ADO file",100);
+			progressMonitor.beginTask("Annotating Design Decisions in the ADO file", 100);
 		
 			String inputFilename = inputFile.getRawLocation().toOSString();
 			String dxmiURI = outputFile.getRawLocation().toOSString();

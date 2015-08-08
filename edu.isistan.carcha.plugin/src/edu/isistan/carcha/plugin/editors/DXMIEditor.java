@@ -83,18 +83,18 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	/** The Constant logger. */
 	private static final Log logger = LogFactory.getLog(DXMIEditor.class);
 
-	/** The text editor used in page 0. */
-	private TextEditor editor;
-
-	/** The dds viewer. */
-	TableViewer ddsViewer;
-	
-	/**  The dataset for the pie chart. */
-	DefaultPieDataset result;
 	/**
 	 * Creates a multi-page editor example.
 	 */
 	CarchaProject cp;
+
+	/** The dds viewer. */
+	TableViewer ddsViewer;
+	
+	/** The text editor used in page 0. */
+	private TextEditor editor;
+	/**  The dataset for the pie chart. */
+	DefaultPieDataset result;
 
 	/**
 	 * Instantiates a new DXMI editor.
@@ -104,34 +104,47 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 	}
 	/**
-	 * Creates page 0 of the multi-page editor,
-	 * which contains a text editor.
+	 * Creates the columns.
+	 *
+	 * @param parent the parent
+	 * @param viewer the viewer
 	 */
-	void createPage0() {
-		try {
-			editor = new TextEditor();
-			int index = addPage(editor, getEditorInput());
-			setPageText(index, "Source");
-		} catch (PartInitException e) {
-			ErrorDialog.openError(
-				getSite().getShell(),
-				"Error creating nested text editor",
-				null,
-				e.getStatus());
-		}
+	void createColumns(final Composite parent, final TableViewer viewer) {
+		String[] titles = { "Type", "Label" };
+		int[] bounds = { 100, 500 };
+
+		// first column is for the kind
+		TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0],
+				0, viewer);
+		col.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				String[] temp = (String[]) element;
+				return temp[0];
+			}
+		});
+
+		// second column is for the  name
+		col = createTableViewerColumn(titles[1], bounds[1], 1, viewer);
+		col.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				String[] temp = (String[]) element;
+				return temp[1];
+			}
+		});
 	}
 	/**
-	 * Creates page 1 of the multi-page editor,
-	 * which shows the sorted text.
+	 * Creates the DDD list page.
 	 */
-	void createPage1() {
+	void createListPage() {
 		final Composite composite = new Composite(getContainer(), SWT.NONE);
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,
 				1, 4));
 		composite.setLayout(new GridLayout());
 		Label concernLabel = new Label(composite, SWT.BORDER);
-		concernLabel.setText("Requirements Concerns");
-		concernLabel.setToolTipText("This are the concern detected on the requierement document");
+		concernLabel.setText("Design Decisions");
+		concernLabel.setToolTipText("This are the Design Decisions detected in the architectural document");
 		GridData gridData = new GridData(SWT.LEFT, SWT.LEFT, false, false);
 		concernLabel.setLayoutData(gridData);
 
@@ -154,15 +167,22 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 		int index = addPage(composite);
 		setPageText(index, "List");
 	}
+	
 	/**
-	 * Creates page 2 of the multi-page editor,
-	 * which shows the pie chart.
+	 * Creates the pages of the multi-page editor.
 	 */
-
-	void createPage2() {
+	protected void createPages() {
+		createSourcePage();
+		createListPage();
+		createPieChartPage();
+	}
+	/**
+	 * Creates the PieChart page.
+	 */
+	void createPieChartPage() {
 		result = new DefaultPieDataset();  
 
-		 JFreeChart chart = ChartFactory.createPieChart("Design desitions", result, true, true, false);  
+		 JFreeChart chart = ChartFactory.createPieChart("Design Decisions", result, true, true, false);  
 		 PiePlot plot = (PiePlot) chart.getPlot();  
 		  plot.setStartAngle(290);  
 		  plot.setDirection(Rotation.CLOCKWISE);  
@@ -177,13 +197,43 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 
 		
 	}
+	
 	/**
-	 * Creates the pages of the multi-page editor.
+	 * Creates the source page.
 	 */
-	protected void createPages() {
-		createPage0();
-		createPage1();
-		createPage2();
+	void createSourcePage() {
+		try {
+			editor = new TextEditor();
+			int index = addPage(editor, getEditorInput());
+			setPageText(index, "Source");
+		} catch (PartInitException e) {
+			ErrorDialog.openError(
+				getSite().getShell(),
+				"Error creating nested text editor",
+				null,
+				e.getStatus());
+		}
+	}
+	
+	/**
+	 * Creates the table viewer column.
+	 *
+	 * @param title the title
+	 * @param bound the bound
+	 * @param colNumber the col number
+	 * @param viewer the viewer
+	 * @return the table viewer column
+	 */
+	TableViewerColumn createTableViewerColumn(String title, int bound,
+			final int colNumber, TableViewer viewer) {
+		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer,
+				SWT.NONE);
+		final TableColumn column = viewerColumn.getColumn();
+		column.setText(title);
+		column.setWidth(bound);
+		column.setResizable(true);
+		column.setMoveable(true);
+		return viewerColumn;
 	}
 	/**
 	 * The <code>MultiPageEditorPart</code> implementation of this 
@@ -203,6 +253,7 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	public void doSave(IProgressMonitor monitor) {
 		getEditor(0).doSave(monitor);
 	}
+	
 	/**
 	 * Saves the multi-page editor's document as another file.
 	 * Also updates the text for page 0's tab, and updates this multi-page editor's input
@@ -214,79 +265,6 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 		setPageText(0, editor.getTitle());
 		setInput(editor.getEditorInput());
 	}
-	
-	/**
-	 * Goto marker.
-	 *
-	 * @param marker the marker
-	 */
-	/* (non-Javadoc)
-	 * Method declared on IEditorPart
-	 */
-	public void gotoMarker(IMarker marker) {
-		setActivePage(0);
-		IDE.gotoMarker(getEditor(0), marker);
-	}
-	
-	/**
-	 * The <code>MultiPageEditorExample</code> implementation of this method
-	 * checks that the input is an instance of <code>IFileEditorInput</code>.
-	 *
-	 * @param site the site
-	 * @param editorInput the editor input
-	 * @throws PartInitException the part init exception
-	 */
-	public void init(IEditorSite site, IEditorInput editorInput)
-		throws PartInitException {
-		if (!(editorInput instanceof IFileEditorInput))
-			throw new PartInitException("Invalid Input: Must be IFileEditorInput");
-		super.init(site, editorInput);
-	}
-	/* (non-Javadoc)
-	 * Method declared on IEditorPart.
-	 */
-	public boolean isSaveAsAllowed() {
-		return true;
-	}
-	
-	/**
-	 * Calculates the contents of page 2 when the it is activated.
-	 *
-	 * @param newPageIndex the new page index
-	 */
-	protected void pageChange(int newPageIndex) {
-		super.pageChange(newPageIndex);
-		if (newPageIndex == 1) {
-			generateDDsViewData();
-		}
-		if (newPageIndex == 2) {
-			generatePieData();
-		}
-		
-	}
-	
-	/**
-	 * Closes all project files on project close.
-	 *
-	 * @param event the event
-	 */
-	public void resourceChanged(final IResourceChangeEvent event){
-		if(event.getType() == IResourceChangeEvent.PRE_CLOSE){
-			Display.getDefault().asyncExec(new Runnable(){
-				public void run(){
-					IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
-					for (int i = 0; i<pages.length; i++){
-						if(((FileEditorInput)editor.getEditorInput()).getFile().getProject().equals(event.getResource())){
-							IEditorPart editorPart = pages[i].findEditor(editor.getEditorInput());
-							pages[i].closeEditor(editorPart,true);
-						}
-					}
-				}            
-			});
-		}
-	}
-
-
 	/**
 	 * Generate d ds view data.
 	 */
@@ -353,57 +331,77 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 		}
 		return sPath;
 	}
+
+
+	/**
+	 * Goto marker.
+	 *
+	 * @param marker the marker
+	 */
+	/* (non-Javadoc)
+	 * Method declared on IEditorPart
+	 */
+	public void gotoMarker(IMarker marker) {
+		setActivePage(0);
+		IDE.gotoMarker(getEditor(0), marker);
+	}
 	
 	/**
-	 * Creates the columns.
+	 * The <code>MultiPageEditorExample</code> implementation of this method
+	 * checks that the input is an instance of <code>IFileEditorInput</code>.
 	 *
-	 * @param parent the parent
-	 * @param viewer the viewer
+	 * @param site the site
+	 * @param editorInput the editor input
+	 * @throws PartInitException the part init exception
 	 */
-	void createColumns(final Composite parent, final TableViewer viewer) {
-		String[] titles = { "Type", "Label" };
-		int[] bounds = { 100, 500 };
-
-		// first column is for the kind
-		TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0],
-				0, viewer);
-		col.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				String[] temp = (String[]) element;
-				return temp[0];
-			}
-		});
-
-		// second column is for the  name
-		col = createTableViewerColumn(titles[1], bounds[1], 1, viewer);
-		col.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				String[] temp = (String[]) element;
-				return temp[1];
-			}
-		});
+	public void init(IEditorSite site, IEditorInput editorInput)
+		throws PartInitException {
+		if (!(editorInput instanceof IFileEditorInput))
+			throw new PartInitException("Invalid Input: Must be IFileEditorInput");
+		super.init(site, editorInput);
+	}
+	
+	/* (non-Javadoc)
+	 * Method declared on IEditorPart.
+	 */
+	public boolean isSaveAsAllowed() {
+		return true;
+	}
+	
+	/**
+	 * Calculates the contents of page 2 when the it is activated.
+	 *
+	 * @param newPageIndex the new page index
+	 */
+	protected void pageChange(int newPageIndex) {
+		super.pageChange(newPageIndex);
+		if (newPageIndex == 1) {
+			generateDDsViewData();
+		}
+		if (newPageIndex == 2) {
+			generatePieData();
+		}
+		
 	}
 
 	/**
-	 * Creates the table viewer column.
+	 * Closes all project files on project close.
 	 *
-	 * @param title the title
-	 * @param bound the bound
-	 * @param colNumber the col number
-	 * @param viewer the viewer
-	 * @return the table viewer column
+	 * @param event the event
 	 */
-	TableViewerColumn createTableViewerColumn(String title, int bound,
-			final int colNumber, TableViewer viewer) {
-		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer,
-				SWT.NONE);
-		final TableColumn column = viewerColumn.getColumn();
-		column.setText(title);
-		column.setWidth(bound);
-		column.setResizable(true);
-		column.setMoveable(true);
-		return viewerColumn;
+	public void resourceChanged(final IResourceChangeEvent event){
+		if(event.getType() == IResourceChangeEvent.PRE_CLOSE){
+			Display.getDefault().asyncExec(new Runnable(){
+				public void run(){
+					IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
+					for (int i = 0; i<pages.length; i++){
+						if(((FileEditorInput)editor.getEditorInput()).getFile().getProject().equals(event.getResource())){
+							IEditorPart editorPart = pages[i].findEditor(editor.getEditorInput());
+							pages[i].closeEditor(editorPart,true);
+						}
+					}
+				}            
+			});
+		}
 	}
 }
