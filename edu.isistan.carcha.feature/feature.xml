@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="edu.isistan.carcha.feature"
-      label="Feature"
-      version="1.0.1"
+      label="Traceability Assistant"
+      version="1.0.2"
       provider-name="UNICEN"
       os="linux,macosx,win32"
       ws="cocoa,gtk,win32"
@@ -221,7 +221,7 @@
    </license>
 
    <url>
-      <update label="TRAS Update Site" url="http://germanattanasio.github.io/traceability-assistant/eclipse"/>
+      <update label="TRAS Update Site" url="https://traceability-assistant.mybluemix.net/eclipse"/>
    </url>
 
    <plugin

@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: model.editor
 Bundle-SymbolicName: edu.isistan.carcha.model.editor;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.2
 Bundle-ClassPath: .
 Bundle-Activator: isistan.edu.carcha.model.carcha.presentation.CarchaEditorPlugin$Implementation
-Bundle-Vendor: %providerName
+Bundle-Vendor: UNICEN
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: isistan.edu.carcha.model.carcha.presentation

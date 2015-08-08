@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Carcha
+Bundle-Name: plugin
 Bundle-SymbolicName: edu.isistan.carcha.plugin;singleton:=true
-Bundle-Version: 1.0.1
+Bundle-Version: 1.0.2
 Bundle-Activator: edu.isistan.carcha.plugin.Activator
 Bundle-Vendor: UNICEN
 Require-Bundle: org.eclipse.ui,

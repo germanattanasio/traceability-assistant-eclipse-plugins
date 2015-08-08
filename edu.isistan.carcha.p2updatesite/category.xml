@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/edu.isistan.carcha.feature_1.0.1.jar" id="edu.isistan.carcha.feature" version="1.0.1">
+   <feature url="features/edu.isistan.carcha.feature_1.0.2.jar" id="edu.isistan.carcha.feature" version="1.0.2">
       <category name="TRAS"/>
    </feature>
    <category-def name="TRAS" label="TRAS">

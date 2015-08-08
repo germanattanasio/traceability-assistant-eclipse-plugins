@@ -30,6 +30,11 @@ To install the TRAS plugin:
 
 Steps to use the plugin here....
 
+## Uninstalling TRAS
+
+Run Help > About Eclipse > Installation Details, select **Traceability Assistant** and click Uninstall. (On Macintosh it is Eclipse > About Eclipse > Installation Details.)
+
+
 ## Release process
 
 1. Create a maven run configuration in the parent project
