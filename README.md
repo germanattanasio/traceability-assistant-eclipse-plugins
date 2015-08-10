@@ -35,7 +35,7 @@ If you get `command not found`, export the library folder to your PATH.
 
 e.g: `/Users/foo/svdlibc` that way the runtime can find the svd command.
 
-In eclipse you may need to add the path variable in  your run configuration and include the path to `svd`as showed above. Follow the instructions in this [blog](http://architectryan.com/2012/10/02/add-to-the-path-on-mac-os-x-mountain-lion/#.UtSw2vbVVyo)
+Sometimes even if `svd` is installed, eclipse doesn't find it. That's because eclipse is not using the same PATH as your terminal. While running in eclipse you can manually add `svd` to your PATH variable in the run configuration.
 
 
 ## Using TRAS
