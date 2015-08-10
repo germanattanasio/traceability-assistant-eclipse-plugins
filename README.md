@@ -37,6 +37,8 @@ e.g: `/Users/foo/svdlibc` that way the runtime can find the svd command.
 
 Sometimes even if `svd` is installed, eclipse doesn't find it. That's because eclipse is not using the same PATH as your terminal. While running in eclipse you can manually add `svd` to your PATH variable in the run configuration.
 
+**svd as part of the Run Configuration**
+![svd](http://s3.postimg.org/zcwajmqg3/Screen_Shot_2015_08_09_at_8_23_54_PM.png)
 
 ## Using TRAS
 
