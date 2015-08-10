@@ -18,6 +18,8 @@ package edu.isistan.carcha.project;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
@@ -32,6 +34,8 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
  * The Class ProjectNewWizard.
  */
 public class ProjectNewWizard extends Wizard implements INewWizard,IExecutableExtension {
+	/** The logger. */
+	private final static Log logger = LogFactory.getLog(ProjectNewWizard.class);
 
 	/** The _page one. */
 	private WizardNewProjectCreationPage _pageOne;
@@ -68,7 +72,7 @@ public class ProjectNewWizard extends Wizard implements INewWizard,IExecutableEx
 		try {
 			ProjectSupport.createProject(name, location);
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error("Error creating the project",e);
 		}
 		BasicNewProjectResourceWizard.updatePerspective(_configurationElement);
 		

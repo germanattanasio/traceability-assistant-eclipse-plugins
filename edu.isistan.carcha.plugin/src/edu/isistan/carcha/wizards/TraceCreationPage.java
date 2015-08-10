@@ -28,6 +28,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
+import edu.isistan.carcha.util.PluginUtil;
+
 /**
  * The Class TraceCreationPage.
  */
@@ -67,7 +69,14 @@ public class TraceCreationPage extends WizardNewFileCreationPage {
 	 */
 	@Override
 	protected boolean validatePage() {
-		if (super.validatePage()) {
+		if (!super.validatePage())
+			return false;
+		
+		if (!PluginUtil.isSVDInstalled()) {
+			String message = "svd was not found. See: https://github.com/germanattanasio/traceability-assistant-eclipse-plugins#svdlib";
+			setErrorMessage(String.format(message, CarchaWizard.EXTENSION_TRA));
+			return false;
+		} else {
 			String extension = new Path(getFileName()).getFileExtension();
 			if (extension == null || !extension.equalsIgnoreCase(CarchaWizard.EXTENSION_TRA)) {
 				String message = "The file name must end in '%s'";
@@ -76,7 +85,6 @@ public class TraceCreationPage extends WizardNewFileCreationPage {
 			}
 			return true;
 		}
-		return false;
 	}
 	
 	/**
@@ -140,7 +148,6 @@ public class TraceCreationPage extends WizardNewFileCreationPage {
 			gridData.horizontalAlignment = SWT.FILL;
 			gridData.grabExcessHorizontalSpace = true;
 			threshold.setLayoutData(gridData);
-			
 }
 
 	/**

@@ -78,8 +78,8 @@ public class TraceabilityAdapter {
 	
 		// copy the links
 		for (edu.isistan.carcha.lsa.model.TraceabilityLink tracelink : trace.getLinks()) {
-			Entity cccModel = cccMap.get(tracelink.getConcern());
-			Entity dddModel = cccMap.get(tracelink.getDesignDecision());
+			Entity cccModel = cccMap.get(tracelink.getConcernId());
+			Entity dddModel = dddMap.get(tracelink.getDesignDecisionId());
 			
 			TraceabilityLink modelLink = carchaFactory.createTraceabilityLink();
 			

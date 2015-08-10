@@ -18,6 +18,7 @@ package edu.isistan.carcha.util;
 import isistan.edu.carcha.model.carcha.CarchaFactory;
 import isistan.edu.carcha.model.carcha.CarchaPackage;
 import isistan.edu.carcha.model.carcha.CarchaProject;
+import isistan.edu.carcha.model.carcha.CrosscuttingConcern;
 import isistan.edu.carcha.model.carcha.DesignDecision;
 import isistan.edu.carcha.model.carcha.TraceabilityLink;
 
@@ -29,6 +30,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -43,6 +46,8 @@ import edu.isistan.carcha.lsa.model.Entity.NodeType;
  * The PluginUtil class contains utility methods to operate with REA and DXMI files.
  */
 public class PluginUtil {
+ 
+	private static final Log logger = LogFactory.getLog(PluginUtil.class);
 
 	/**
 	 * Extracts Crosscutting Concerns from a REA file.
@@ -65,6 +70,21 @@ public class PluginUtil {
 	}
 
 	/**
+	 * Check if svd is installed
+	 * Install it from: https://github.com/lucasmaystre/svdlibc
+	 * @return true, if svd is installed
+	 */
+	public static boolean isSVDInstalled() {
+		try {
+			Runtime.getRuntime().exec("svd");
+		} catch (Exception e) {
+			logger.error("svd is not installed. It needs to be visible from the PATH variable in eclipse");
+			return false;
+		}
+		return true;
+	}
+	
+	/**
 	 * Removes the duplicates.
 	 *
 	 * @param concerns the concerns
@@ -80,12 +100,12 @@ public class PluginUtil {
 	/**
 	 * Extracts design decisions from a DXMI file.
 	 *
-	 * @param DXMIFile the DXMI file from where the design decisions will be extracted
+	 * @param dxmiFile the DXMI file from where the design decisions will be extracted
 	 * @return the design decision list extracted from the DXMIFile
 	 */
-	public static List<Entity> designDecisionsAsList(IFile DXMIFile) {
-
-		return Utils.annotationAsList(DXMIFile.getRawLocation().toOSString(), edu.isistan.carcha.concern.cdetector.DesignDecision.class, true);
+	public static List<Entity> designDecisionsAsList(IFile dxmiFile) {
+		
+		return Utils.extractDesignDecisionsAsList(dxmiFile.getRawLocation().toOSString());
 	}
 
 	/**
@@ -242,10 +262,10 @@ public class PluginUtil {
 	 * @param cccs the cccs
 	 * @return the design decisions for cross cutting concern
 	 */
-	public static List<DesignDecision> getDesignDecisionsForCrossCuttingConcern(CarchaProject cp,isistan.edu.carcha.model.carcha.CrosscuttingConcern cccs ){
+	public static List<DesignDecision> getDesignDecisionsForCrossCuttingConcern(CarchaProject cp, CrosscuttingConcern ccc ){
 		List<DesignDecision> dds = new ArrayList<DesignDecision>();
 		for (isistan.edu.carcha.model.carcha.TraceabilityLink link : cp.getLinks()){
-			if  (link.getConcern().getId().equalsIgnoreCase(cccs.getId())){
+			if  (link.getConcern().getName().equalsIgnoreCase(ccc.getName())){
 				dds.add(link.getDesignDecision());
 			}
 		}
@@ -267,6 +287,7 @@ public class PluginUtil {
 				if ( (link.getConcern().getName().equals(concern.getName())) && 
 						(link.getConcern().getKind().equals(concern.getKind())) ){
 					equals = true;
+					break;
 				}	
 			}
 			if (!equals){
@@ -279,18 +300,16 @@ public class PluginUtil {
 	/**
 	 * Gets the design decisions for cross cutting concern.
 	 *
-	 * @param cp the cp
-	 * @param name the name
-	 * @param kind the kind
+	 * @param cp the carcha projecy
+	 * @param name the crosscutting concern covered text
+	 * @param kind the crosscutting concern classification
 	 * @return the design decisions for cross cutting concern
 	 */
-	public static List<DesignDecision> getDesignDecisionsForCrossCuttingConcern(CarchaProject cp,String name, String kind ){
+	public static List<DesignDecision> getDesignDecisionsForCrossCuttingConcern(CarchaProject cp, String name, String kind ){
 		List<DesignDecision> dds = new ArrayList<DesignDecision>();
 		
 		for (isistan.edu.carcha.model.carcha.TraceabilityLink link : cp.getLinks()){
-				if ( (link.getConcern().getName().equalsIgnoreCase(name)) &&
-						(link.getConcern().getKind().equalsIgnoreCase(kind))
-						){
+				if ( (link.getConcern().getName().equalsIgnoreCase(name))) {
 					dds.add(link.getDesignDecision());
 				}	
 		}
@@ -330,15 +349,15 @@ public class PluginUtil {
 		HashMap<String,Integer> values = new HashMap<String, Integer>();
 		Integer temp = 0;
 
-		for (isistan.edu.carcha.model.carcha.TraceabilityLink link : cp.getLinks()){
+		for (TraceabilityLink link : cp.getLinks()){
 			if (link.getConcern().getKind().equalsIgnoreCase(kind)){
-				temp = values.get(link.getConcern().getKind());
+				temp = values.get(link.getDesignDecision().getKind());
 				if(temp != null){
 					temp ++;
 				}else{
 					temp = 1;
 				}
-				values.put(link.getConcern().getKind(), temp);
+				values.put(link.getDesignDecision().getKind(), temp);
 			}
 		}
 		return values;

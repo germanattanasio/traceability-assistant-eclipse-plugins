@@ -66,7 +66,7 @@ public class TraceabilityRecoverCommand  extends WorkspaceModifyOperation {
 	protected CarchaFactory carchaFactory = carchaPackage.getCarchaFactory();
 	
 	/** The logger. */
-	private Log logger = LogFactory.getLog(TraceabilityRecoverCommand.class);
+	private final static Log logger = LogFactory.getLog(TraceabilityRecoverCommand.class);
 
 	
 	/**

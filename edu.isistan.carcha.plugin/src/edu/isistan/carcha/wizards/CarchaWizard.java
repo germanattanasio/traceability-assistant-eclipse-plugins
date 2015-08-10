@@ -45,8 +45,10 @@ public class CarchaWizard extends Wizard implements INewWizard {
 	/** The extensions rea plane. */
 	public static String EXTENSIONS_REA_PLANE = "rea";
 		
+	public static String EXTENSIONS_CCC_PLANE = "ccc";
+
 	/** The extensions rea. */
-	public static String[] EXTENSIONS_REA = {EXTENSIONS_REA_PLANE};
+	public static String[] EXTENSIONS_REA = {EXTENSIONS_REA_PLANE, EXTENSIONS_CCC_PLANE};
 	
 	/** The extensions ado. */
 	public static String[] EXTENSIONS_ADO = {EXTENSIONS_ADO_PLANE};
@@ -113,7 +115,7 @@ public class CarchaWizard extends Wizard implements INewWizard {
 		// REA Selection Page
 		reaSelectionPage = new REASelectionPage(selection);
 		reaSelectionPage.setTitle("REA Selection");
-		reaSelectionPage.setDescription("Select a requirement engineering assistant(REA) as input.");
+		reaSelectionPage.setDescription("Select a requirement engineering assistant(REA) or Crosscutting Concern(ccc) file as input.");
 		addPage(reaSelectionPage);
 		
 		// DXMI Page
@@ -257,7 +259,7 @@ public class CarchaWizard extends Wizard implements INewWizard {
 			
 			// run the Traceability recover within an operation
 			getContainer().run(false, false, new TraceabilityRecoverCommand(traceCreationPage.getName(),reaFile, uimaFile,traceFile,traceCreationPage.getDimensions(),traceCreationPage.getThreshold()));
-			
+
 			if (traceFile.exists()) {
 				//run a command to open the result file. The traceability file :)
 				OpenFileWithEditorCommand command = new OpenFileWithEditorCommand(traceFile);
@@ -266,8 +268,7 @@ public class CarchaWizard extends Wizard implements INewWizard {
 			return true;
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Error creating the traceability file",e);
+			logger.error("Error creating the traceability file", e);
 			return false;
 		}
 	}

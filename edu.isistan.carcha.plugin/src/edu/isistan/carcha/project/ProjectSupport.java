@@ -19,6 +19,8 @@ import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -35,6 +37,8 @@ import edu.isistan.carcha.nature.ProjectNature;
  * The Class ProjectSupport.
  */
 public class ProjectSupport {
+	/** The logger. */
+	private final static Log logger = LogFactory.getLog(ProjectSupport.class);
 
 	/** The Constant TYPE_SYSTEM_FILENAME. */
 	private static final String TYPE_SYSTEM_FILENAME = "TypeSystem.xml";
@@ -85,7 +89,7 @@ public class ProjectSupport {
 			addTypeSystemProjectStructure(project);
 
 		} catch (CoreException e) {
-			e.printStackTrace();
+			logger.error("Error creating the eclipse project",e);
 			project = null;
 		}
 
@@ -129,7 +133,7 @@ public class ProjectSupport {
 					newProject.open(null);
 				}
 			} catch (CoreException e) {
-				e.printStackTrace();
+				logger.error("Error creating the base project",e);
 			}
 		}
 

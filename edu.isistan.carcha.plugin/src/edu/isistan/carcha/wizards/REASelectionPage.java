@@ -15,6 +15,7 @@
  */
 package edu.isistan.carcha.wizards;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -150,8 +151,8 @@ public class REASelectionPage extends WizardPage {
 	 */
 	protected boolean validatePage() {
 		if(!validateResource(getResource())) {
-			String message = "Invalid REA input file. The file name must have the following extension: '%s'";
-			setErrorMessage(String.format(message, CarchaWizard.EXTENSIONS_REA_PLANE));
+			String message = "Invalid REA or CCC file. The file name must have the following extensions: '%s'";
+			setErrorMessage(String.format(message, StringUtils.join(CarchaWizard.EXTENSIONS_REA,", ")));
 			return false;
 		}
 		setErrorMessage(null);

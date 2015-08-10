@@ -64,7 +64,6 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.experimental.chart.swt.ChartComposite;
 import org.jfree.util.Rotation;
 
-import edu.isistan.carcha.concern.cdetector.DesignDecision;
 import edu.isistan.carcha.lsa.model.Entity;
 import edu.isistan.carcha.util.Utils;
 
@@ -270,7 +269,7 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	 */
 	void generateDDsViewData(){
 		List<String[]> dds = new ArrayList<String[]>();
-		List<Entity> designDecisions = Utils.annotationAsList(getPath(), DesignDecision.class, false);
+		List<Entity> designDecisions = Utils.extractDesignDecisionsAsList(getPath());
 		
 		for (Entity designDecision : designDecisions){
 			dds.add(new String[]{ designDecision.getClassification(), designDecision.getLabel() });
@@ -283,18 +282,18 @@ public class DXMIEditor extends MultiPageEditorPart implements IResourceChangeLi
 	 */
 	void generatePieData(){
 		try {
-			List<Entity> concerns = Utils.annotationAsList(getPath(), DesignDecision.class, false);
+			List<Entity> designDecisions = Utils.extractDesignDecisionsAsList(getPath());
 			HashMap<String,Integer> values = new HashMap<String, Integer>();
 			Integer temp = 0;
 
-			for (Entity concern : concerns){
-				temp = values.get(concern.getClassification());
+			for (Entity dd : designDecisions){
+				temp = values.get(dd.getClassification());
 				if(temp != null){
 					temp ++;
 				}else{
 					temp = 1;
 				}
-				values.put(concern.getClassification(), temp);
+				values.put(dd.getClassification(), temp);
 			}
 			for(String key : values.keySet()){
 				result.setValue(key, values.get(key));

@@ -39,7 +39,7 @@ public class OpenFileWithEditorCommand {
 	private IFile traceFile;
 	
 	/** The logger. */
-	private Log logger = LogFactory.getLog(OpenFileWithEditorCommand.class);
+	private final static Log logger = LogFactory.getLog(OpenFileWithEditorCommand.class);
 
 	/**
 	 * Instantiates a new open file with editor command.
