@@ -40,6 +40,38 @@ Sometimes even if `svd` is installed, eclipse doesn't find it. That's because ec
 **svd as part of the Run Configuration**
 ![svd](http://s3.postimg.org/zcwajmqg3/Screen_Shot_2015_08_09_at_8_23_54_PM.png)
 
+## Setting up the local environment
+Steps to run the plugins in your development environment.
+
+### Assumptions
+ 
+ * You have eclipse installed. See https://eclipse.org/downloads/
+ * You have maven installed. See https://maven.apache.org/
+ * You have UIMA RUTA installed. Update site: http://www.apache.org/dist/uima/eclipse-update-site
+
+1. Download the [traceability-assistant](https://github.com/germanattanasio/traceability-assistant) code:
+
+        git clone git@github.com:germanattanasio/traceability-assistant.git
+
+1. Download the plugins code:
+
+        git clone git@github.com:germanattanasio/traceability-assistant-eclipse-plugins.git
+
+1. Generate the [traceability-assistant](https://github.com/germanattanasio/traceability-assistant-eclipse-plugins) jar file.
+2. In the `traceability-assistant` folder run:
+
+        mvn clean install
+
+3. Copy `traceability-assistant/target/traceability-assistant-1.0.1-jar-with-dependencies.jar` into `tras-plugins/edu.isistan.carcha.plugin`
+
+4. Create a Eclipse Application Run configuration. See image below.
+![run-configuration](http://s11.postimg.org/50q573q6r/Screen_Shot_2015_08_10_at_1_23_25_AM.png)
+
+5. Run it!
+
+**Note:** You can find all the Run configurations in: `tras-plugins/edu.isistan.carcha.master/runners`
+![runners](http://s12.postimg.org/z2aoxl1rh/Screen_Shot_2015_08_10_at_1_22_31_AM.png)
+
 ## Using TRAS
 
 Steps to use the plugin here....
