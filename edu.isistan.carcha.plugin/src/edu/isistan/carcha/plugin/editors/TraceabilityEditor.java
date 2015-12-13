@@ -43,6 +43,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
@@ -438,7 +439,7 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 	 */
 	void impactListPage() {
 		final Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 6));
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		composite.setLayout(new GridLayout());
 		
 		Label concernLabel = new Label(composite, SWT.BORDER);
@@ -447,19 +448,33 @@ public class TraceabilityEditor extends MultiPageEditorPart implements
 		GridData gridData = new GridData(SWT.LEFT, SWT.TOP, false, false);
 		concernLabel.setLayoutData(gridData);
 
-		topViewLink = new TableViewer(composite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-		createColumns(composite, topViewLink);
+		/////////////////////
+		ScrolledComposite sc = new ScrolledComposite(composite, SWT.H_SCROLL |  SWT.V_SCROLL);
+		Composite parent = new Composite(sc, SWT.NONE);
+		parent.setLayout(new GridLayout());
+		
+		
+		topViewLink = new TableViewer(parent, SWT.BORDER);
+		createColumns(parent, topViewLink);
 
 		final Table table = topViewLink.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+
 		topViewLink.setContentProvider(new ArrayContentProvider());
 
 		getSite().setSelectionProvider(topViewLink);
-		// define layout for the viewer
-		gridData = new GridData(SWT.FILL, SWT.FILL, true, false);
-		topViewLink.getControl().setLayoutData(gridData);
-
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
+		data.heightHint = 10 * table.getItemHeight();
+		table.setLayoutData(data);
+		
+		sc.setContent(parent);
+		sc.setExpandHorizontal(true);
+		sc.setExpandVertical(true);
+		sc.setMinSize(parent.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		
+		/////////////////////
+		
 		Button button = new Button(composite, SWT.PUSH);
 		button.setText("Remove");
 		button.addSelectionListener(new SelectionListener() {
