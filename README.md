@@ -57,12 +57,12 @@ Steps to run the plugins in your development environment.
 
         git clone git@github.com:germanattanasio/traceability-assistant-eclipse-plugins.git
 
-1. Generate the [traceability-assistant](https://github.com/germanattanasio/traceability-assistant-eclipse-plugins) jar file.
+1. Generate the [traceability-assistant](https://github.com/germanattanasio/traceability-assistant) jar file.
 2. In the `traceability-assistant` folder run:
 
         mvn clean install
 
-3. Copy `traceability-assistant/target/traceability-assistant-1.0.1-jar-with-dependencies.jar` into `tras-plugins/edu.isistan.carcha.plugin`
+3. Copy `traceability-assistant/target/traceability-assistant-1.1.2-jar-with-dependencies.jar` into `tras-plugins/edu.isistan.carcha.plugin`
 
 4. Create a Eclipse Application Run configuration. See image below.
 ![run-configuration](http://s11.postimg.org/50q573q6r/Screen_Shot_2015_08_10_at_1_23_25_AM.png)
@@ -95,7 +95,7 @@ Run Help > About Eclipse > Installation Details, select **Traceability Assistant
 7. Click Run.
 8. The update-site will be available at:  
    `edu.isistan.carcha.p2updatesite/target/edu.isistan.carcha.p2updatesite-x.x.x.zip`  
-   The zip file contrains all the information you need to install the plugin in your eclipse.
+   The zip file contains all the information you need to install the plugin in your eclipse.
 
 ## What is REAssistant?
 
