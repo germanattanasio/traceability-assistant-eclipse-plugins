@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: model.edit
 Bundle-SymbolicName: edu.isistan.carcha.model.edit;singleton:=true
-Bundle-Version: 1.0.3
+Bundle-Version: 1.1.2
 Bundle-ClassPath: .
 Bundle-Activator: isistan.edu.carcha.model.carcha.provider.CarchaEditPlugin$Implementation
 Bundle-Vendor: UNICEN

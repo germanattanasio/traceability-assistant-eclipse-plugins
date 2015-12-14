@@ -10,7 +10,7 @@
     <relativePath>../edu.isistan.carcha.master/pom.xml</relativePath>
     <groupId>edu.isistan</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.2</version>
   </parent>
   <artifactId>edu.isistan.carcha.plugin</artifactId>
   <packaging>eclipse-plugin</packaging>
