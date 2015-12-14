@@ -28,7 +28,7 @@ To install the TRAS plugin:
 
 ### svdlib
 In order to use the traceability discovery feature you need to install a library called [SVD](https://github.com/lucasmaystre/svdlibc).  
-Once the library is installed, open a terminal and type `svd`. 
+Once the library is installed, open a terminal and type `svd`.
 If you get `command not found`, export the library folder to your PATH.
 
     export PATH=$PATH:/path/to/svdlibc/directory  
@@ -44,7 +44,7 @@ Sometimes even if `svd` is installed, eclipse doesn't find it. That's because ec
 Steps to run the plugins in your development environment.
 
 ### Assumptions
- 
+
  * You have eclipse installed. See https://eclipse.org/downloads/
  * You have maven installed. See https://maven.apache.org/
  * You have UIMA RUTA installed. Update site: http://www.apache.org/dist/uima/eclipse-update-site
@@ -74,7 +74,10 @@ Steps to run the plugins in your development environment.
 
 ## Using TRAS
 
-Steps to use the plugin here....
+### Recovering traceability links
+![recovering-traceability](/instructions/traceability.gif)
+
+Full [video](http://recordit.co/9T0D0fC7sM).
 
 ## Uninstalling TRAS
 
@@ -85,7 +88,7 @@ Run Help > About Eclipse > Installation Details, select **Traceability Assistant
 
 1. Create a maven run configuration in the parent project
 2. Set `tycho-versions:set-version` as goal
-3. Add `newVersion` as parameter and `x.x.x` as version. 
+3. Add `newVersion` as parameter and `x.x.x` as version.
 4. Click Run.
 5. Create another maven run configuration in the parent project
 6. Set `clean instal` as goal
@@ -112,7 +115,7 @@ In order to install REAssistant you will have to contact alejandro.rago[at]gmail
 
 ## Troubleshooting
 
-1. Open a terminal and type `svd`. 
+1. Open a terminal and type `svd`.
 2. If you get `command not found`, export the library folder to your PATH.
 
         export PATH=$PATH:/path/to/svdlibc/directory
